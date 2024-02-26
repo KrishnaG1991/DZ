@@ -19,14 +19,14 @@ def show_main_menu() -> int:
 print(show_main_menu())
 
 
-def show_contacts(phone_book: dict[int, [str]]):
+def show_contacts(phone_book: dict[int, [str]], error_message: str):
     if phone_book:
         print("\n" + "=" * 71)
         for u_id, contact in phone_book.items():
             print(f' {u_id:>3}. {contact[0]:<20} | {contact[1]:<20} | {contact[2]:<20}')
         print("=" * 71 + "\n")
     else:
-        show_message(text.empty_phone_book_error)
+        show_message(error_message)
 
 
 def show_message(message: str):
@@ -35,5 +35,9 @@ def show_message(message: str):
     print("=" * len(message) + '\n')
 
 
-def input_new_contact() -> list[str]:
-    return [input(massage) for massage in text.input_new_contact]
+def input_data(message) ->list[str] | str:
+    if isinstance(message,str):
+        return  input('\n'+ message)
+    return [input(mes) for mes in message]
+
+
